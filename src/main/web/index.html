@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Knesset Analyzer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
-<body>
-שששששששש
-</body>
+    </head>
+
+    <!-- Dependencies -->
+    <script src="node_modules/angular/angular.js"></script>
+    <!--<script src="node_modules/angular-formly/dist/formly.js"></script>
+    <script src="node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>-->
+    
+    <!-- Application Scripts -->
+    <script src="scripts/App.js"></script>
+
+
+    <body ng-app="knessetAnalyzer" ng-controller="mainCtrl">
+        <div  class="container">
+            <form name="datesQuery" role="form" align="center" novalidate>
+                <h1>Enter dates range you wish to analyze:</h1>
+                <label> From: <input type="date" ng-model="dates.startDate" required></label>
+                <label> To: <input type="date" ng-model="dates.endDate" required></label>
+                <div>
+                    <button type="submit" ng-click="datesQuery.$valid&&submit()" class="btn btn-primary" ng-disabled="datesQuery.$invalid">Analyze</button>
+                </div>
+
+            </form>
+            
+            <div ng-show="sent" align="center">
+                <br><br>
+                Analyzing, please wait...
+            </div>
+            
+            <div ng-show="received" align="center">
+                <br><br>
+                <h3>Most talked about subjects between <b>-{{dates.startDate.toDateString()}}-</b> and <b>-{{dates.endDate.toDateString()}}-</b>:</h3>
+                <div ng-repeat="(index, subject) in subjectList">
+                    {{index+1}}.{{subject}}
+                </div>
+            </div>
+        </div>
+    </body>
+    
 </html>
