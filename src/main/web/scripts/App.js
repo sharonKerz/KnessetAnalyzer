@@ -12,6 +12,13 @@ app.controller("mainCtrl", function($scope, $http) {
     $scope.submit = function() {
         console.log("Submit Activated");
         $scope.sent = true;
+        
+        // FOR DEBUG ONLY:
+        $scope.sent=false;
+        $scope.received = true;
+        $scope.subjectList = ['Security', 'Economy', 'Stupid Muslims', 'terror', 'friendly justice'];
+        /////// DELETE WHEN ACTIVE /////
+        
         $http.post("http://"+$scope.sendingAddress+":3000/datesQuery", 
                        $scope.dates)
             .success(function(response) {
@@ -19,11 +26,7 @@ app.controller("mainCtrl", function($scope, $http) {
                 $scope.received = true;
                 $scope.subjectList = response;
             });
-        // FOR DEBUG ONLY:
-        $scope.sent=false;
-        $scope.received = true;
-        $scope.subjectList = ['Security', 'Economy', 'Stupid Muslims', 'terror', 'friendly justice'];
-        /////// DELETE WHEN ACTIVE /////
+        
     }
     
 });
