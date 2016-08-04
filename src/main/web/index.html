@@ -12,6 +12,9 @@
 
     <!-- Dependencies -->
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/fusioncharts/fusioncharts.js"></script>
+    <script src="node_modules/fusioncharts/themes/fusioncharts.theme.fint.js"></script>
+    <script src="node_modules/fusioncharts/angular-fusioncharts.js"></script>
     <!--<script src="node_modules/angular-formly/dist/formly.js"></script>
     <script src="node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>-->
     
@@ -20,28 +23,58 @@
 
 
     <body ng-app="knessetAnalyzer" ng-controller="mainCtrl">
-        <div  class="container">
+        <div align="center" class="container">
+            <img  src="images/Logo.png"></img>
+            <hr>
             <form name="datesQuery" role="form" align="center" novalidate>
-                <h1>Enter dates range you wish to analyze:</h1>
+                <h2>Please submit the dates you wish to analyze</h2>
+                <br>
                 <label> From: <input type="date" ng-model="dates.startDate" required></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <label> To: <input type="date" ng-model="dates.endDate" required></label>
                 <div>
+                    <br>
                     <button type="submit" ng-click="datesQuery.$valid&&submit()" class="btn btn-primary" ng-disabled="datesQuery.$invalid">Analyze</button>
                 </div>
 
             </form>
+            <hr style="height:2px;border:none;color:#333;background-color:#333;" />
             
+            <!-- Loading Div -->
             <div ng-show="sent" align="center">
                 <br><br>
                 Analyzing, please wait...
             </div>
             
+            <!-- Data Received Showdown -->
             <div ng-show="received" align="center">
-                <br><br>
+                <h2>RESULTS:</h2>
+                <hr>
+                
+                <!--<br><br>
                 <h3>Most talked about subjects between <b>-{{dates.startDate.toDateString()}}-</b> and <b>-{{dates.endDate.toDateString()}}-</b>:</h3>
                 <div ng-repeat="(index, subject) in subjectList">
                     {{index+1}}.{{subject}}
+                </div>-->
+                
+                <div>
+                    <div fusioncharts
+                       width="600"
+                       height="400"
+                       type="{{type}}"
+                       dataSource="{{myDataSource}}">
+                    </div>
                 </div>
+                
+                <hr>
+                <div>
+                    <h3>View As:</h3>
+                    <button ng-click="pieType()" class="btn btn-primary">Pie</button>
+                    <button ng-click="columnType()" class="btn btn-primary">Column</button>
+                    <button ng-click="barType()" class="btn btn-primary">bar</button>
+                    <button ng-click="lineType()" class="btn btn-primary">line</button>
+                </div>
+                
             </div>
         </div>
     </body>
