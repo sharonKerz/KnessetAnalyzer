@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module("knessetAnalyzer", ["ng-fusioncharts"]); 
+var app = angular.module("knessetAnalyzer", ["ng-fusioncharts"]);
 app.controller("mainCtrl", function($scope, $http) {
     $scope.dates = {startDate: new Date(99), endDate: new Date()};
     //$scope.startDate = new Date(99);
@@ -8,7 +8,7 @@ app.controller("mainCtrl", function($scope, $http) {
     $scope.sendingAddress = 'localhost';
     $scope.received = false;
     $scope.sent = false;
-    //$scope.type = "bar3d"; // Types: bar3d, pie3d, column3d, 
+    //$scope.type = "bar3d"; // Types: bar3d, pie3d, column3d,
     $scope.type = "column3d";
     $scope.types = {
         pie: false,
@@ -16,7 +16,7 @@ app.controller("mainCtrl", function($scope, $http) {
         column: false,
         line: false
     }
-    
+
     $scope.myDataSource = {
                 chart: {
                     caption: "Subjects Discussed",
@@ -34,12 +34,13 @@ app.controller("mainCtrl", function($scope, $http) {
                 data:
                 [ ]
               };
-    
+
     $scope.submit = function() {
         console.log("Submit Activated");
         $scope.sent = true;
-        
+
         // FOR DEBUG ONLY:
+        /*
         $scope.sent=false;
         $scope.received = true;
         $scope.myDataSource.data = [{
@@ -51,31 +52,32 @@ app.controller("mainCtrl", function($scope, $http) {
                     value: "730000"
                 },
                 {
-                    label: "Stupid Muslims",
+                    label: "Money",
                     value: "590000"
                 },
                 {
-                    label: "Terror",
+                    label: "Peace",
                     value: "520000"
                 },
                 {
                     label: "Friendly Justice",
                     value: "330000"
                 }];
+                */
         /////// DELETE WHEN ACTIVE /////
-        
-        $http.post("http://"+$scope.sendingAddress+":3000/datesQuery", 
+
+        $http.get("http://"+$scope.sendingAddress+":3000/datesQuery",
                        $scope.dates)
             .success(function(response) {
                 $scope.sent = false;
                 $scope.received = true;
                 $scope.myDataSource.data = response;
             });
-        
+
     }
-    
-    
-    
+
+
+
     $scope.pieType = function() {
         $scope.type="pie3d";
     }
@@ -88,5 +90,5 @@ app.controller("mainCtrl", function($scope, $http) {
     $scope.lineType = function() {
         $scope.type="line";
     }
-    
+
 });
