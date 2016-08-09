@@ -52,6 +52,16 @@ app.controller("mainCtrl", function($scope, $http) {
                     value: "730000"
                 },
                 {
+                app.get('/datesQuery', function(req, res){
+                    var sd = req.body.startDate;
+                    var ed = req.body.endDate;
+                    var subjects = analyze(sd,ed);
+                    res.send(subjects);
+                });
+
+
+
+
                     label: "Money",
                     value: "590000"
                 },
@@ -66,7 +76,7 @@ app.controller("mainCtrl", function($scope, $http) {
                 */
         /////// DELETE WHEN ACTIVE /////
 
-        $http.get("http://"+$scope.sendingAddress+":3000/datesQuery",
+        $http.get("http://"+$scope.sendingAddress+":8000/datesQuery",
                        $scope.dates)
             .success(function(response) {
                 $scope.sent = false;
