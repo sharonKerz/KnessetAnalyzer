@@ -5,7 +5,7 @@ app.controller("mainCtrl", function($scope, $http) {
     //$scope.startDate = new Date(99);
     //$scope.endDate = new Date();
     $scope.subjectList = [];
-    $scope.sendingAddress = 'localhost';
+    $scope.sendingAddress = '10.0.0.4';
     $scope.received = false;
     $scope.sent = false;
     //$scope.type = "bar3d"; // Types: bar3d, pie3d, column3d,
@@ -38,52 +38,51 @@ app.controller("mainCtrl", function($scope, $http) {
     $scope.submit = function() {
         console.log("Submit Activated");
         $scope.sent = true;
-
+        //Math.floor((Math.random() * 100) + 1).toString();
         // FOR DEBUG ONLY:
-        /*
-        $scope.sent=false;
-        $scope.received = true;
+
+        //$scope.sent=false;
+        //$scope.received = true;
         $scope.myDataSource.data = [{
                     label: "Security",
-                    value: "880000"
+                    value: "88"
                 },
                 {
                     label: "Economy",
-                    value: "730000"
+                    value: "73"
                 },
                 {
-                app.get('/datesQuery', function(req, res){
-                    var sd = req.body.startDate;
-                    var ed = req.body.endDate;
-                    var subjects = analyze(sd,ed);
-                    res.send(subjects);
-                });
-
-
-
-
                     label: "Money",
-                    value: "590000"
+                    value: "59"
                 },
                 {
                     label: "Peace",
-                    value: "520000"
+                    value: "52"
                 },
                 {
                     label: "Friendly Justice",
-                    value: "330000"
+                    value: "33"
+                },
+                {
+                  label: "Education",
+                  value: "29"
+                },
+                {
+                  label: "Warfare",
+                  value: "20"
                 }];
-                */
+
         /////// DELETE WHEN ACTIVE /////
 
         $http.get("http://"+$scope.sendingAddress+":8000/datesQuery",
                        $scope.dates)
             .success(function(response) {
+
                 $scope.sent = false;
                 $scope.received = true;
                 $scope.myDataSource.data = response;
             });
-
+            console.log($scope.dates);
     }
 
 
