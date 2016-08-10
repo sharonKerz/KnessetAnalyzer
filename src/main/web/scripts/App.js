@@ -5,7 +5,7 @@ app.controller("mainCtrl", function($scope, $http) {
     //$scope.startDate = new Date(99);
     //$scope.endDate = new Date();
     $scope.subjectList = [];
-    $scope.sendingAddress = '10.0.0.4';
+    $scope.sendingAddress = 'localhost';
     $scope.received = false;
     $scope.sent = false;
     //$scope.type = "bar3d"; // Types: bar3d, pie3d, column3d,
@@ -44,31 +44,31 @@ app.controller("mainCtrl", function($scope, $http) {
         //$scope.sent=false;
         //$scope.received = true;
         $scope.myDataSource.data = [{
-                    label: "Security",
+                    label: "ביטחון",
                     value: "88"
                 },
                 {
-                    label: "Economy",
+                    label: "כלכלה",
                     value: "73"
                 },
                 {
-                    label: "Money",
+                    label: "תקציבים",
                     value: "59"
                 },
                 {
-                    label: "Peace",
+                    label: "הסכם מדיני",
                     value: "52"
                 },
                 {
-                    label: "Friendly Justice",
+                    label: "יוקר המחייה",
                     value: "33"
                 },
                 {
-                  label: "Education",
+                  label: "חינוך",
                   value: "29"
                 },
                 {
-                  label: "Warfare",
+                  label: "בריאות",
                   value: "20"
                 }];
 
