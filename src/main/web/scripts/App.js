@@ -41,8 +41,8 @@ app.controller("mainCtrl", function($scope, $http) {
         //Math.floor((Math.random() * 100) + 1).toString();
         // FOR DEBUG ONLY:
 
-        //$scope.sent=false;
-        //$scope.received = true;
+        $scope.sent=false;
+        $scope.received = true;
         $scope.myDataSource.data = [{
                     label: "ביטחון",
                     value: "88"
@@ -56,11 +56,11 @@ app.controller("mainCtrl", function($scope, $http) {
                     value: "59"
                 },
                 {
-                    label: "הסכם מדיני",
+                    label: "מדיני",
                     value: "52"
                 },
                 {
-                    label: "יוקר המחייה",
+                    label: "דיור",
                     value: "33"
                 },
                 {
@@ -70,6 +70,18 @@ app.controller("mainCtrl", function($scope, $http) {
                 {
                   label: "בריאות",
                   value: "20"
+                },
+                {
+                  label: "המים",
+                  value: "11"
+                },
+                {
+                  label: "התקשורת",
+                  value: "7"
+                },
+                {
+                  label: "אסבסט",
+                  value: "3"
                 }];
 
         /////// DELETE WHEN ACTIVE /////
